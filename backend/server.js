@@ -6,6 +6,31 @@ const dotenv = require("dotenv");
 // Load biến môi trường từ file .env
 dotenv.config();
 
+const cors = require("cors");
+
+// Cấu hình danh sách các domain được phép gọi API
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://smart-restaurant-qr-1.onrender.com/",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Cho phép request không có origin (như Postman hoặc mobile app)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true, // Quan trọng nếu dùng cookie/session
+  })
+);
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
