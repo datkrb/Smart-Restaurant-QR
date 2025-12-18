@@ -6,12 +6,13 @@ const dotenv = require("dotenv");
 // Load biến môi trường từ file .env
 dotenv.config();
 
-const cors = require("cors");
-
 // Cấu hình danh sách các domain được phép gọi API
 const allowedOrigins = [
   "http://localhost:5173",
   "https://smart-restaurant-qr-1.onrender.com/",
+  "http://192.168.197.1:5173/",
+  "http://192.168.44.1:5173/",
+  "http://10.252.20.171:5173/",
 ];
 
 app.use(
