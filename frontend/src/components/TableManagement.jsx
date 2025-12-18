@@ -10,7 +10,9 @@ import {
 } from "react-icons/fi";
 import QRCodePanel from "./QRCodePanel";
 
-const API_URL = "http://localhost:5000/api/admin/tables";
+// SỬA: Thêm đuôi /api/admin/tables vào đây để các hàm bên dưới gọi cho gọn
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = `${BASE_URL}/api/admin/tables`;
 
 const TableManagement = () => {
   const [tables, setTables] = useState([]);
