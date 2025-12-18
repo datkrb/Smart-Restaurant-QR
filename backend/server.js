@@ -15,6 +15,10 @@ const allowedOrigins = [
   "http://10.252.20.171:5173/",
 ];
 
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -31,12 +35,6 @@ app.use(
     credentials: true, // Quan trọng nếu dùng cookie/session
   })
 );
-
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-// Middleware
-app.use(cors()); // Cho phép Frontend gọi API
 app.use(express.json()); // Cho phép đọc dữ liệu JSON gửi lên
 
 // Kết nối MongoDB
